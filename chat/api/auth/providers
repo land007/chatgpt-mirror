@@ -1,0 +1,1 @@
+{"auth0":{"id":"auth0","name":"Auth0","type":"oauth","signinUrl":"https://chat.openai.com/api/auth/signin/auth0","callbackUrl":"https://chat.openai.com/api/auth/callback/auth0"},"openai":{"id":"openai","name":"openai","type":"oauth","signinUrl":"https://chat.openai.com/api/auth/signin/openai","callbackUrl":"https://chat.openai.com/api/auth/callback/openai"}}
