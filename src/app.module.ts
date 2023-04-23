@@ -16,7 +16,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
       load: [configuration]
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: join(__dirname, '..', 'chat'),
       serveRoot: '/',
     }),
   ],

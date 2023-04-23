@@ -1,0 +1,41 @@
+{
+  "en": {
+    "insufficient_quota": "The API key has insufficient quota. Please using another API key.",
+    "rate_limit_reached": "Rate limit reached for API key, please try again later.",
+    "context_length_exceeded": "The context length is too long",
+    "too_many_requests": "Too many requests, please try again later.",
+    "setup_api_key": "Our API key is running out, please setup your own API key.",
+    "max_messages_reached": "Today's free quota has been reached.",
+    "unknown_error": "Unknown error, please try again later.",
+    "session_not_found": "Session not found or expired, please refresh the page and try again.",
+
+    "modalTitle": "Our API key is running out...",
+    "source": "This is an open-source project. If you're willing, you can deploy it privately, ",
+    "sourceLink": "view source code",
+    "key": "Alternatively, you can enter your own API key to continue using it. Your key will be saved locally and only used by you.",
+    "placeholder": "Click here to input your key",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "OK": "OK"
+  },
+  "zh": {
+    "insufficient_quota": "API密钥配额不足。 请使用另一个API密钥。",
+    "rate_limit_reached": "API密钥的请求速率已达到限制，请稍后再试。",
+    "context_length_exceeded": "上下文长度太长",
+    "too_many_requests": "请求过多，请稍后再试。",
+    "setup_api_key": "我们的API密钥即将用尽，请设置您自己的API密钥。",
+    "max_messages_reached": "今天的免费配额已用完。",
+    "unknown_error": "未知错误，请稍后再试。",
+    "session_not_found": "会话不存在或已过期，请刷新页面并重试。",
+
+    "modalTitle": "我们的 API key 即将用尽...",
+    "source": "这是一个开源项目。如果你愿意，你可以私有部署它，",
+    "sourceLink": "点击获取源码",
+    "key": "或者，你可以输入你自己的 API key 继续使用，你的 key 将被保存在本地，仅供你使用。",
+    "placeholder": "在这里输入 OpenAI 的 key",
+    "save": "保存",
+    "Cancel": "取消",
+    "OK": "确定",
+    "Setup API key": "设置 API key"
+  }
+}

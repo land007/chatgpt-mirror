@@ -1,4 +1,4 @@
-import { Body, Controller, Get, MessageEvent, Post, Sse } from '@nestjs/common';
+import { Body, Headers, Controller, Get, MessageEvent, Post, Sse } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { AppService } from './app.service.js';
@@ -29,11 +29,15 @@ export class AppController {
 
   @Post('conversation')
   @Sse()
-  conversation(@Body() body: ConversationRequestBody): Observable<MessageEvent> {
+  conversation(
+    @Body() body: ConversationRequestBody,
+    @Headers('x-openai-api-key') apiKey: string,
+    @Headers('x-openai-model') model: string,
+  ): Observable<MessageEvent> {
     const { messages, parent_message_id } = body;
     const message = messages[0]?.content.parts[0] ?? '';
-
-    return this.appService.sendMessage(message, parent_message_id);
+	console.log(apiKey, model); // 打印头信息
+    return this.appService.sendMessage(message, parent_message_id, apiKey, model);
   }
 
   @Post('conversation/gen_title/')
