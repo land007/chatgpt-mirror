@@ -1,4 +1,4 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Res, Param } from '@nestjs/common';
 import { Response } from 'express';
 import * as fs from 'fs';
 import { join } from 'path';
@@ -10,10 +10,11 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 export class ChatController {
 
   @Get(':id')
-  async getIndex(@Res() res: Response) {
-    const path = join(__dirname, '..', 'chat', 'index.html');
+  async getIndex(@Param('id') id: string, @Res() res: Response) {
+    const path = join(__dirname, '..', 'chat', 'index_c.html');
     const content = await fs.promises.readFile(path, 'utf-8');
-    res.send(content);
+    const updatedContent = content.replace(/\${chatId}/g, id);
+    res.send(updatedContent);
   }
 
 }

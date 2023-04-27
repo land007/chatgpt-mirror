@@ -3,33 +3,58 @@
     34388: function(e, t, n) {
         n.d(t, {
             T: function() {
-                return o
+                return r
             }
         });
-        function o(e) {
+        function r(e) {
             return void 0 !== e.userMessage
         }
     },
     33264: function(e, t, n) {
-        var o = n(61706)
-          , r = n(35025)
+        var r = n(61706)
+          , o = n(35025)
           , a = n(9135)
           , i = n(31501)
           , s = n(61079)
           , c = n(42928)
-          , h = n(39889)
-          , u = n(48879)
+          , u = n(45813)
+          , h = n(48879)
           , d = n(91515);
         n(138);
         var p = n(34388)
-          , l = n(49674)
-          , f = n(11938)
-          , g = "/backend-api"
-          , m = ["cf-ipcountry"]
-          , v = function() {
+          , l = n(74516)
+          , f = n(49674)
+          , g = n(11938)
+          , m = "/backend-api"
+          , v = ["cf-ipcountry"];
+        function y() {
+            return (y = (0,
+            r.Z)(function(e, t) {
+                var n, r;
+                return (0,
+                u.__generator)(this, function(o) {
+                    switch (o.label) {
+                    case 0:
+                        return (n = new Headers).append("x-ms-blob-type", "BlockBlob"),
+                        n.append("x-ms-version", "2020-04-08"),
+                        n.append("Content-Type", t.type),
+                        [4, fetch(e, {
+                            method: "PUT",
+                            headers: n,
+                            body: t
+                        })];
+                    case 1:
+                        if (!(r = o.sent()).ok)
+                            throw Error("Error uploading the file: ".concat(t.name, ". Response: ").concat(r.status));
+                        return [2]
+                    }
+                })
+            })).apply(this, arguments)
+        }
+        var _ = function() {
             function e() {
                 (0,
-                r.Z)(this, e)
+                o.Z)(this, e)
             }
             return e.setAccessToken = function(e) {
                 this.accessToken = e
@@ -51,10 +76,10 @@
                     return this.apiKeyRefreshing;
                 var t = this;
                 return this.apiKeyRefreshing = (0,
-                o.Z)(function() {
+                r.Z)(function() {
                     var e;
                     return (0,
-                    h.__generator)(this, function(n) {
+                    u.__generator)(this, function(n) {
                         switch (n.label) {
                         case 0:
                             return [4, (0,
@@ -77,52 +102,52 @@
             ,
             e.fetch = function(e, t) {
                 var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}
-                  , r = this;
+                  , o = this;
                 return (0,
-                o.Z)(function() {
-                    var o, a, c, u, d, p;
+                r.Z)(function() {
+                    var r, a, c, h, d, p;
                     return (0,
-                    h.__generator)(this, function(h) {
-                        switch (h.label) {
+                    u.__generator)(this, function(u) {
+                        switch (u.label) {
                         case 0:
-                            return [4, fetch(e, o = (0,
+                            return [4, fetch(e, r = (0,
                             i.Z)({
                                 credentials: "include"
                             }, t))];
                         case 1:
-                            if ((a = h.sent()).status >= 500)
+                            if ((a = u.sent()).status >= 500)
                                 throw n.intercomEventOnError && (0,
-                                f.LJ)(n.intercomEventOnError, {
+                                g.LJ)(n.intercomEventOnError, {
                                     url: e,
                                     status: a.status.toString()
                                 }),
-                                new l.kb;
+                                new f.Q0;
                             if (!(a.status >= 400))
                                 return [3, 12];
-                            h.label = 2;
+                            u.label = 2;
                         case 2:
-                            return h.trys.push([2, 4, , 5]),
+                            return u.trys.push([2, 4, , 5]),
                             [4, a.json()];
                         case 3:
-                            return c = (null == (u = h.sent()) ? void 0 : u.detail) || (null == u ? void 0 : u.error),
+                            return c = (null == (h = u.sent()) ? void 0 : h.detail) || (null == h ? void 0 : h.error),
                             [3, 5];
                         case 4:
-                            return d = h.sent(),
+                            return d = u.sent(),
                             console.error("Failed to parse error response", d),
                             [3, 5];
                         case 5:
                             if (console.error("API error", e, c),
                             !((null == c ? void 0 : c.code) === "expired_session_key" || (null == c ? void 0 : c.code) === "token_expired"))
                                 return [3, 11];
-                            h.label = 6;
+                            u.label = 6;
                         case 6:
-                            if (h.trys.push([6, 9, , 10]),
+                            if (u.trys.push([6, 9, , 10]),
                             n.isRetry)
                                 return [3, 8];
-                            return [4, r.refreshApiKey()];
+                            return [4, o.refreshApiKey()];
                         case 7:
-                            return h.sent(),
-                            [2, r.fetch(e, o, (0,
+                            return u.sent(),
+                            [2, o.fetch(e, r, (0,
                             s.Z)((0,
                             i.Z)({}, n), {
                                 isRetry: !0
@@ -130,23 +155,23 @@
                         case 8:
                             return [3, 10];
                         case 9:
-                            return p = h.sent(),
+                            return p = u.sent(),
                             console.error("Failed to refresh expired access token: ".concat(p)),
                             [3, 10];
                         case 10:
                             console.error("Refresh access token failed when retrieving", e, c),
                             window._oaiHandleSessionExpired("fetch", JSON.stringify(c)),
-                            h.label = 11;
+                            u.label = 11;
                         case 11:
                             if (null == c ? void 0 : c.type)
                                 throw n.intercomEventOnError && (0,
-                                f.LJ)(n.intercomEventOnError, {
+                                g.LJ)(n.intercomEventOnError, {
                                     url: e,
                                     status: a.status.toString(),
                                     message: (null == c ? void 0 : c.message) || c
                                 }),
-                                new l.gK((null == c ? void 0 : c.message) || c,a.status,null == c ? void 0 : c.code,null == c ? void 0 : c.type);
-                            throw new l.kb;
+                                new f.gK((null == c ? void 0 : c.message) || c,a.status,null == c ? void 0 : c.code,null == c ? void 0 : c.type);
+                            throw new f.Q0;
                         case 12:
                             if (204 === a.status)
                                 return [2, {}];
@@ -157,7 +182,7 @@
             }
             ,
             e.getArtifacts = function() {
-                return this.fetch("".concat(g, "/artifacts"), {
+                return this.fetch("".concat(m, "/artifacts"), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -167,7 +192,7 @@
             }
             ,
             e.createArtifact = function(e) {
-                return this.fetch("".concat(g, "/artifacts"), {
+                return this.fetch("".concat(m, "/artifacts"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -180,25 +205,118 @@
                 })
             }
             ,
+            e.uploadDirectly = function(e, t, n, o) {
+                var a = this;
+                return (0,
+                r.Z)(function() {
+                    var r;
+                    return (0,
+                    u.__generator)(this, function(s) {
+                        return r = new FormData,
+                        t && r.append("conversation_id", t),
+                        r.append("model", n),
+                        r.append("parent_message_id", e),
+                        r.append("file", o),
+                        [2, a.fetch("".concat(m, "/conversation/upload"), {
+                            method: "POST",
+                            headers: (0,
+                            i.Z)({}, a.getAuthHeader()),
+                            body: r
+                        })]
+                    })
+                })()
+            }
+            ,
+            e.finalizeUpload = function(e, t, n, o) {
+                var a = this;
+                return (0,
+                r.Z)(function() {
+                    var r;
+                    return (0,
+                    u.__generator)(this, function(s) {
+                        return (r = new FormData).append("filename", o.name),
+                        t && r.append("conversation_id", t),
+                        r.append("model", n),
+                        r.append("parent_message_id", e),
+                        [2, a.fetch("".concat(m, "/conversation/finalize_upload"), {
+                            method: "POST",
+                            headers: (0,
+                            i.Z)({}, a.getAuthHeader()),
+                            body: r
+                        })]
+                    })
+                })()
+            }
+            ,
+            e.getUploadLink = function(e, t) {
+                var n = this;
+                return (0,
+                r.Z)(function() {
+                    var r;
+                    return (0,
+                    u.__generator)(this, function(o) {
+                        return r = new FormData,
+                        t && r.append("conversation_id", t),
+                        r.append("filename", e.name),
+                        [2, n.fetch("".concat(m, "/conversation/get_upload_link"), {
+                            method: "POST",
+                            headers: (0,
+                            i.Z)({}, n.getAuthHeader()),
+                            body: r
+                        })]
+                    })
+                })()
+            }
+            ,
+            e.uploadUsingFileService = function(e, t, n, o) {
+                var a = this;
+                return (0,
+                r.Z)(function() {
+                    var r, i;
+                    return (0,
+                    u.__generator)(this, function(s) {
+                        switch (s.label) {
+                        case 0:
+                            return s.trys.push([0, 4, , 5]),
+                            [4, a.getUploadLink(o, t)];
+                        case 1:
+                            if (!(null == (r = s.sent()) ? void 0 : r.upload_url))
+                                throw Error("/conversation/get_upload_link result is not valid: ".concat(r));
+                            return [4, function(e, t) {
+                                return y.apply(this, arguments)
+                            }(r.upload_url, o)];
+                        case 2:
+                            return s.sent(),
+                            [4, a.finalizeUpload(e, t, n, o)];
+                        case 3:
+                            return [2, s.sent()];
+                        case 4:
+                            throw i = s.sent(),
+                            l.m.forError(i),
+                            i;
+                        case 5:
+                            return [2]
+                        }
+                    })
+                })()
+            }
+            ,
             e.upload = function(e, t, n, o) {
-                var r = new FormData;
-                return t && r.append("conversation_id", t),
-                r.append("model", n),
-                r.append("parent_message_id", e),
-                r.append("file", o),
-                this.fetch("".concat(g, "/conversation/upload"), {
-                    method: "POST",
-                    headers: (0,
-                    i.Z)({}, this.getAuthHeader()),
-                    body: r
-                })
+                var a = this;
+                return (0,
+                r.Z)(function() {
+                    return (0,
+                    u.__generator)(this, function(r) {
+                        return [2, a.uploadDirectly(e, t, n, o)]
+                    })
+                })()
             }
             ,
             e.fetchFileForDownload = function(e, t) {
                 var n = new URLSearchParams({
                     path: t
                 });
-                return fetch("".concat(g, "/conversation/").concat(e, "/download?").concat(n), {
+                return fetch("".concat(m, "/conversation/").concat(e, "/download?").concat(n), {
                     method: "GET",
                     headers: (0,
                     i.Z)({}, this.getAuthHeader())
@@ -209,7 +327,7 @@
                 var n = new URLSearchParams({
                     path: t
                 });
-                return this.fetch("".concat(g, "/conversation/").concat(e, "/check_file?").concat(n), {
+                return this.fetch("".concat(m, "/conversation/").concat(e, "/check_file?").concat(n), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -219,7 +337,7 @@
             }
             ,
             e.sendDocument = function() {
-                return this.fetch("".concat(g, "/private"), {
+                return this.fetch("".concat(m, "/private"), {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -228,7 +346,7 @@
             }
             ,
             e.getRetrievalResults = function(e) {
-                return this.fetch("".concat(g, "/retrieval/public_data"), {
+                return this.fetch("".concat(m, "/retrieval/public_data"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -241,7 +359,7 @@
             }
             ,
             e.getModels = function(e) {
-                return this.fetch("".concat(g, "/models"), {
+                return this.fetch("".concat(m, "/models"), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -251,13 +369,13 @@
             }
             ,
             e.getConversations = function(e, t, n) {
-                var o = arguments.length > 3 && void 0 !== arguments[3] && arguments[3]
-                  , r = new URLSearchParams({
+                var r = arguments.length > 3 && void 0 !== arguments[3] && arguments[3]
+                  , o = new URLSearchParams({
                     offset: e.toString(),
                     limit: t.toString()
                 });
-                return o && r.set("order", "updated"),
-                this.fetch("".concat(g, "/conversations?").concat(r), {
+                return r && o.set("order", "updated"),
+                this.fetch("".concat(m, "/conversations?").concat(o), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -269,7 +387,7 @@
             }
             ,
             e.getConversation = function(e, t) {
-                return this.fetch("".concat(g, "/conversation/").concat(e), {
+                return this.fetch("".concat(m, "/conversation/").concat(e), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -281,7 +399,7 @@
             }
             ,
             e.generateTitle = function(e, t, n) {
-                return this.fetch("".concat(g, "/conversation/gen_title/").concat(e), {
+                return this.fetch("".concat(m, "/conversation/gen_title/").concat(e), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -296,7 +414,7 @@
             }
             ,
             e.generateFollowups = function(e, t, n) {
-                return this.fetch("".concat(g, "/conversation/").concat(e, "/experimental/generate_followups"), {
+                return this.fetch("".concat(m, "/conversation/").concat(e, "/experimental/generate_followups"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -313,7 +431,7 @@
             }
             ,
             e.patchConversation = function(e, t) {
-                return this.fetch("".concat(g, "/conversation/").concat(e), {
+                return this.fetch("".concat(m, "/conversation/").concat(e), {
                     method: "PATCH",
                     headers: (0,
                     i.Z)({
@@ -326,7 +444,7 @@
             }
             ,
             e.deleteConversations = function() {
-                return this.fetch("".concat(g, "/conversations"), {
+                return this.fetch("".concat(m, "/conversations"), {
                     method: "PATCH",
                     headers: (0,
                     i.Z)({
@@ -341,7 +459,7 @@
             }
             ,
             e.getLoginLink = function(e) {
-                return this.fetch("".concat(g, "/bypass/link"), {
+                return this.fetch("".concat(m, "/bypass/link"), {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -355,11 +473,11 @@
             e.publicApiCompletionStream = function(e, t) {
                 var n = this;
                 return (0,
-                o.Z)(function() {
-                    var r, s, c, d;
+                r.Z)(function() {
+                    var o, s, c, d;
                     return (0,
-                    h.__generator)(this, function(d) {
-                        return r = new AbortController,
+                    u.__generator)(this, function(d) {
+                        return o = new AbortController,
                         s = {
                             action: e.completionType,
                             messages: e.messages.length > 0 ? e.messages : void 0,
@@ -368,11 +486,12 @@
                             model: e.model,
                             plugin_ids: e.threadId ? void 0 : e.enabledPluginIds,
                             timezone_offset_min: new Date().getTimezoneOffset(),
-                            variant_purpose: e.variantPurpose
+                            variant_purpose: e.variantPurpose,
+                            history_and_training_disabled: e.historyDisabled
                         },
                         c = "".concat("/backend-api", "/conversation"),
                         (0,
-                        u.L)(c, {
+                        h.L)(c, {
                             method: "POST",
                             credentials: "include",
                             headers: (0,
@@ -380,15 +499,15 @@
                                 "Content-Type": "application/json"
                             }, n.getAuthHeader()),
                             body: JSON.stringify(s),
-                            signal: r.signal,
+                            signal: o.signal,
                             openWhenHidden: !0,
                             onopen: function(e) {
                                 return (0,
-                                o.Z)(function() {
-                                    var t, n, o;
+                                r.Z)(function() {
+                                    var t, n, r;
                                     return (0,
-                                    h.__generator)(this, function(r) {
-                                        switch (r.label) {
+                                    u.__generator)(this, function(o) {
+                                        switch (o.label) {
                                         case 0:
                                             if (t = e.headers.get("content-type") || "",
                                             e.ok && t.includes("text/event-stream"))
@@ -397,24 +516,24 @@
                                                 return [3, 2];
                                             return [4, e.json()];
                                         case 1:
-                                            if (n = r.sent(),
+                                            if (n = o.sent(),
                                             console.error(n),
-                                            o = (null == n ? void 0 : n.error) || (null == n ? void 0 : n.detail)) {
+                                            r = (null == n ? void 0 : n.error) || (null == n ? void 0 : n.detail)) {
                                                 if (e.status >= 500)
-                                                    throw new l.kb((null == o ? void 0 : o.message) || o);
-                                                throw ((null == o ? void 0 : o.code) === "expired_session_key" || (null == o ? void 0 : o.code) === "invalid_api_key" || (null == o ? void 0 : o.code) === "token_expired") && window._oaiHandleSessionExpired("stream", JSON.stringify(o)),
-                                                new l.gK((null == o ? void 0 : o.message) || o,e.status,null == o ? void 0 : o.code,null == o ? void 0 : o.type,void 0,null == o ? void 0 : o.clears_in)
+                                                    throw new f.Q0((null == r ? void 0 : r.message) || r);
+                                                throw ((null == r ? void 0 : r.code) === "expired_session_key" || (null == r ? void 0 : r.code) === "invalid_api_key" || (null == r ? void 0 : r.code) === "token_expired") && window._oaiHandleSessionExpired("stream", JSON.stringify(r)),
+                                                new f.gK((null == r ? void 0 : r.message) || r,e.status,null == r ? void 0 : r.code,null == r ? void 0 : r.type,void 0,null == r ? void 0 : r.clears_in)
                                             }
-                                            r.label = 2;
+                                            o.label = 2;
                                         case 2:
-                                            throw new l.kb
+                                            throw new f.Q0
                                         }
                                     })
                                 })()
                             },
                             onmessage: function(e) {
                                 if ("[DONE]" === e.data)
-                                    r.abort(),
+                                    o.abort(),
                                     t({
                                         finish_reason: "stop"
                                     });
@@ -424,21 +543,21 @@
                                     try {
                                         var n = JSON.parse(e.data);
                                         if (n.error)
-                                            throw new l.kb(n.error.message);
+                                            throw new f.Q0(n.error.message);
                                         t({
                                             message: n.message,
                                             threadId: n.conversation_id
                                         })
-                                    } catch (o) {
+                                    } catch (r) {
                                         if ((0,
-                                        p.T)(o))
-                                            throw new l.kb(o.message)
+                                        p.T)(r))
+                                            throw new f.Q0(r.message)
                                     }
                             },
                             onerror: function(e) {
-                                throw "Failed to fetch" === e.message && (e = new l.kb("An error occurred. Either the engine you requested does not exist or there was another issue processing your request. If this issue persists please contact us through our help center at help.openai.com.")),
+                                throw "Failed to fetch" === e.message && (e = new f.Q0("An error occurred. Either the engine you requested does not exist or there was another issue processing your request. If this issue persists please contact us through our help center at help.openai.com.")),
                                 (0,
-                                f.LJ)("fetch-error:conversation:new-message", {
+                                g.LJ)("fetch-error:conversation:new-message", {
                                     url: c,
                                     message: null == e ? void 0 : e.message
                                 }),
@@ -449,10 +568,10 @@
                             }
                         }).catch(function(e) {
                             (0,
-                            a.Z)(e, l.gK) || (0,
-                            a.Z)(e, l.kb) || console.error(e)
+                            a.Z)(e, f.gK) || (0,
+                            a.Z)(e, f.Q0) || console.error(e)
                         }),
-                        [2, r]
+                        [2, o]
                     })
                 })()
             }
@@ -474,7 +593,7 @@
             }
             ,
             e.submitMessageFeedback = function(e) {
-                return this.fetch("".concat(g, "/conversation/message_feedback"), {
+                return this.fetch("".concat(m, "/conversation/message_feedback"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -485,7 +604,7 @@
             }
             ,
             e.submitMessageComparisonFeedback = function(e) {
-                return this.fetch("".concat(g, "/conversation/message_comparison_feedback"), {
+                return this.fetch("".concat(m, "/conversation/message_comparison_feedback"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -496,7 +615,7 @@
             }
             ,
             e.getCheckoutLink = function() {
-                return this.fetch("".concat(g, "/payments/checkout"), {
+                return this.fetch("".concat(m, "/payments/checkout"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -506,7 +625,7 @@
             }
             ,
             e.fetchCustomerPortalUrl = function(e) {
-                return this.fetch("".concat(g, "/payments/customer_portal"), {
+                return this.fetch("".concat(m, "/payments/customer_portal"), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -520,34 +639,34 @@
             e.getPlugins = function(e) {
                 var t = e.offset
                   , n = e.limit
-                  , o = e.statuses
-                  , r = e.isInstalled
+                  , r = e.statuses
+                  , o = e.isInstalled
                   , a = e.accessToken
                   , s = [["offset", t.toString()], ["limit", n.toString()], ];
-                if (o) {
+                if (r) {
                     var c = !0
-                      , h = !1
-                      , u = void 0;
+                      , u = !1
+                      , h = void 0;
                     try {
-                        for (var d, p = o[Symbol.iterator](); !(c = (d = p.next()).done); c = !0) {
+                        for (var d, p = r[Symbol.iterator](); !(c = (d = p.next()).done); c = !0) {
                             var l = d.value;
                             s.push(["statuses", l])
                         }
                     } catch (f) {
-                        h = !0,
-                        u = f
+                        u = !0,
+                        h = f
                     } finally {
                         try {
                             c || null == p.return || p.return()
                         } finally {
-                            if (h)
-                                throw u
+                            if (u)
+                                throw h
                         }
                     }
                 }
-                r && s.push(["is_installed", "true"]);
-                var m = new URLSearchParams(s);
-                return this.fetch("".concat(g, "/aip/p?").concat(m), {
+                o && s.push(["is_installed", "true"]);
+                var g = new URLSearchParams(s);
+                return this.fetch("".concat(m, "/aip/p?").concat(g), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -559,10 +678,10 @@
             e.getPluginByDomain = function(e) {
                 var t = e.domain
                   , n = e.accessToken
-                  , o = new URLSearchParams({
+                  , r = new URLSearchParams({
                     domain: t
                 });
-                return this.fetch("".concat(g, "/aip/p/domain?").concat(o), {
+                return this.fetch("".concat(m, "/aip/p/domain?").concat(r), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -574,18 +693,18 @@
             e.createOrUpdateLocalhostPlugin = function(e) {
                 var t = e.localhost
                   , n = e.manifest
-                  , o = e.openapiSpec
-                  , r = e.accessToken;
-                return this.fetch("".concat(g, "/aip/lhp"), {
+                  , r = e.openapiSpec
+                  , o = e.accessToken;
+                return this.fetch("".concat(m, "/aip/lhp"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(r)),
+                    }, this.getAuthHeader(o)),
                     body: JSON.stringify({
                         localhost: t,
                         manifest: n,
-                        openapi_spec: o
+                        openapi_spec: r
                     })
                 })
             }
@@ -593,13 +712,13 @@
             e.scrapePluginManifest = function(e) {
                 var t = e.domain
                   , n = e.manifestAccessToken
-                  , o = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p"), {
+                  , r = e.accessToken;
+                return this.fetch("".concat(m, "/aip/p"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(o)),
+                    }, this.getAuthHeader(r)),
                     body: JSON.stringify({
                         domain: t,
                         manifest_access_token: n
@@ -610,7 +729,7 @@
             e.getPluginApi = function(e) {
                 var t = e.id
                   , n = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t, "/api"), {
+                return this.fetch("".concat(m, "/aip/p/").concat(t, "/api"), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -622,13 +741,13 @@
             e.updatePluginUserSettings = function(e) {
                 var t = e.pluginId
                   , n = e.isInstalled
-                  , o = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t, "/user-settings"), {
+                  , r = e.accessToken;
+                return this.fetch("".concat(m, "/aip/p/").concat(t, "/user-settings"), {
                     method: "PATCH",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(o)),
+                    }, this.getAuthHeader(r)),
                     body: JSON.stringify({
                         is_installed: n
                     })
@@ -638,7 +757,7 @@
             e.deletePlugin = function(e) {
                 var t = e.id
                   , n = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t), {
+                return this.fetch("".concat(m, "/aip/p/").concat(t), {
                     method: "DELETE",
                     headers: (0,
                     i.Z)({
@@ -650,13 +769,13 @@
             e.setPluginUserHttpToken = function(e) {
                 var t = e.id
                   , n = e.userAccessToken
-                  , o = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t, "/user-settings/http-auth"), {
+                  , r = e.accessToken;
+                return this.fetch("".concat(m, "/aip/p/").concat(t, "/user-settings/http-auth"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(o)),
+                    }, this.getAuthHeader(r)),
                     body: JSON.stringify({
                         access_token: n
                     })
@@ -666,13 +785,13 @@
             e.setPluginServiceHttpToken = function(e) {
                 var t = e.id
                   , n = e.serviceAccessToken
-                  , o = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t, "/http-auth"), {
+                  , r = e.accessToken;
+                return this.fetch("".concat(m, "/aip/p/").concat(t, "/http-auth"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(o)),
+                    }, this.getAuthHeader(r)),
                     body: JSON.stringify({
                         access_token: n
                     })
@@ -682,17 +801,17 @@
             e.setPluginOAuthClientCredentials = function(e) {
                 var t = e.id
                   , n = e.clientId
-                  , o = e.clientSecret
-                  , r = e.accessToken;
-                return this.fetch("".concat(g, "/aip/p/").concat(t, "/oauth"), {
+                  , r = e.clientSecret
+                  , o = e.accessToken;
+                return this.fetch("".concat(m, "/aip/p/").concat(t, "/oauth"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(r)),
+                    }, this.getAuthHeader(o)),
                     body: JSON.stringify({
                         client_id: n,
-                        client_secret: o
+                        client_secret: r
                     })
                 })
             }
@@ -703,33 +822,33 @@
                     "Content-Type": "application/json"
                 }, this.getAuthHeader(e));
                 if (t) {
-                    var o = {}
-                      , r = !0
+                    var r = {}
+                      , o = !0
                       , a = !1
                       , s = void 0;
                     try {
-                        for (var h, u = Object.entries(t)[Symbol.iterator](); !(r = (h = u.next()).done); r = !0) {
+                        for (var u, h = Object.entries(t)[Symbol.iterator](); !(o = (u = h.next()).done); o = !0) {
                             var d = (0,
-                            c.Z)(h.value, 2)
+                            c.Z)(u.value, 2)
                               , p = d[0]
                               , l = d[1];
-                            m.includes(p.toLowerCase()) && (o[p] = l)
+                            v.includes(p.toLowerCase()) && (r[p] = l)
                         }
                     } catch (f) {
                         a = !0,
                         s = f
                     } finally {
                         try {
-                            r || null == u.return || u.return()
+                            o || null == h.return || h.return()
                         } finally {
                             if (a)
                                 throw s
                         }
                     }
                     n = (0,
-                    i.Z)({}, o, n)
+                    i.Z)({}, r, n)
                 }
-                return this.fetch("".concat(g, "/accounts/check"), {
+                return this.fetch("".concat(m, "/accounts/check"), {
                     method: "GET",
                     headers: n
                 }, {
@@ -738,7 +857,7 @@
             }
             ,
             e.deactivateAccount = function(e) {
-                return this.fetch("".concat(g, "/accounts/deactivate"), {
+                return this.fetch("".concat(m, "/accounts/deactivate"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -748,7 +867,7 @@
             }
             ,
             e.submitDataExport = function(e) {
-                return this.fetch("".concat(g, "/accounts/data_export"), {
+                return this.fetch("".concat(m, "/accounts/data_export"), {
                     method: "POST",
                     headers: (0,
                     i.Z)({
@@ -757,23 +876,23 @@
                 })
             }
             ,
-            e.pluginOauthCallback = function(e, t, n, o) {
-                var r = new URLSearchParams({
+            e.pluginOauthCallback = function(e, t, n, r) {
+                var o = new URLSearchParams({
                     code: t,
                     redirect_uri: n
                 });
-                return this.fetch("".concat(g, "/aip/p/").concat(e, "/user-settings/oauth/callback?").concat(r), {
+                return this.fetch("".concat(m, "/aip/p/").concat(e, "/user-settings/oauth/callback?").concat(o), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
                         "Content-Type": "application/json"
-                    }, this.getAuthHeader(o))
+                    }, this.getAuthHeader(r))
                 })
             }
             ,
             e.getPageMetadata = function(e) {
                 var t = e.url;
-                return this.fetch("".concat(g, "/opengraph/tags?url=").concat(encodeURIComponent(t)), {
+                return this.fetch("".concat(m, "/opengraph/tags?url=").concat(encodeURIComponent(t)), {
                     method: "GET",
                     headers: (0,
                     i.Z)({
@@ -794,8 +913,8 @@
             ,
             e
         }();
-        v.auth0Client = null,
-        t.ZP = v
+        _.auth0Client = null,
+        t.ZP = _
     },
     11938: function(e, t, n) {
         n.d(t, {
@@ -809,11 +928,11 @@
                 return i
             }
         });
-        var o = n(70079)
-          , r = "dgkjq2bp";
+        var r = n(70079)
+          , o = "dgkjq2bp";
         function a() {
             (0,
-            o.useEffect)(function() {
+            r.useEffect)(function() {
                 !function() {
                     var e = window
                       , t = e.Intercom;
@@ -822,22 +941,22 @@
                         t("update", e.intercomSettings);
                     else {
                         var n = document
-                          , o = function() {
-                            o.c(arguments)
+                          , r = function() {
+                            r.c(arguments)
                         };
-                        o.q = [],
-                        o.c = function(e) {
-                            o.q.push(e)
+                        r.q = [],
+                        r.c = function(e) {
+                            r.q.push(e)
                         }
                         ,
-                        e.Intercom = o;
+                        e.Intercom = r;
                         var a = function() {
                             var e, t = n.createElement("script");
                             t.type = "text/javascript",
                             t.async = !0,
-                            t.src = "https://widget.intercom.io/widget/".concat(r);
-                            var o = n.getElementsByTagName("script")[0];
-                            null === (e = o.parentNode) || void 0 === e || e.insertBefore(t, o)
+                            t.src = "https://widget.intercom.io/widget/".concat(o);
+                            var r = n.getElementsByTagName("script")[0];
+                            null === (e = r.parentNode) || void 0 === e || e.insertBefore(t, r)
                         };
                         "complete" === document.readyState ? a() : e.attachEvent ? e.attachEvent("onload", a) : e.addEventListener("load", a, !1)
                     }
@@ -847,7 +966,7 @@
         function i(e, t) {
             var n = window.Intercom;
             e.id && n && n("boot", {
-                app_id: r,
+                app_id: o,
                 user_id: e.id,
                 name: e.name,
                 email: e.email,
