@@ -2,6 +2,9 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { Response } from 'express';
 import * as fs from 'fs';
 import { join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 @Controller({ path: '/c' })
 export class ChatController {
