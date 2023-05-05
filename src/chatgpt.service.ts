@@ -26,6 +26,7 @@ export class ChatGPTService implements OnModuleInit {
     if (HTTP_PROXY) {
       this.proxyAgent = new ProxyAgent(HTTP_PROXY);
     }
+    this.openaiConfig = this.configService.get('openai') || {};
   }
 
   private proxyFetch = (url: string, options?: any) => {
@@ -36,7 +37,7 @@ export class ChatGPTService implements OnModuleInit {
   };
 
   sendMessage(message: string, parentMessageId: string, apiKey: string, model: string): Observable<MessageEvent> {
-    const { systemMessage, maxTokens, model: defaultModel = 'gpt-3.5-turbo' } = this.configService.get('openai');
+    const { systemMessage, maxTokens, model: defaultModel = 'gpt-3.5-turbo' } = this.configService;
     const currentApiKey = apiKey || process.env.OPENAI_API_KEY; // 优先使用传入的 apiKey，如果为空则使用默认的
     const currentModel = model || defaultModel; // 优先使用传入的 model，如果为空则使用默认的
     let api = this.apis.get(currentApiKey);
