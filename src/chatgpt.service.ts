@@ -22,9 +22,9 @@ export class ChatGPTService implements OnModuleInit {
   }
 
   onModuleInit() {
-    const httpProxy = process.env;
-    if (httpProxy) {
-      this.proxyAgent = new ProxyAgent(httpProxy);
+    const { HTTP_PROXY } = process.env;
+    if (HTTP_PROXY) {
+      this.proxyAgent = new ProxyAgent(HTTP_PROXY);
     }
   }
 
