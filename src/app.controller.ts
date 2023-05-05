@@ -40,7 +40,8 @@ export class AppController {
     const message = messages[0]?.content.parts[0] ?? '';
 	//console.log('headers', headers); // 打印头信息
 	console.log('ip', ip); // 打印头信息
-	console.log(apiKey, model); // 打印头信息
+	console.log('apiKey', apiKey); // 打印头信息
+	console.log('model', model); // 打印头信息
     return this.appService.sendMessage(message, parent_message_id, apiKey, model);
   }
 
