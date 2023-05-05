@@ -11,7 +11,7 @@ import { ErrorMapping, OpenAiConfig } from './config/configuration.types.js';
 export class ChatGPTService implements OnModuleInit {
   private readonly logger = new Logger(ChatGPTService.name);
 
-//  private api: ChatGPTAPI;
+  private api: ChatGPTAPI;
   private proxyAgent: unknown;
   private errorMapping: ErrorMapping[];
 
@@ -24,6 +24,20 @@ export class ChatGPTService implements OnModuleInit {
     if (HTTP_PROXY) {
       this.proxyAgent = new ProxyAgent(HTTP_PROXY);
     }
+
+    const openaiConfig: OpenAiConfig = this.configService.get('openai') || {};
+    const { systemMessage, maxTokens, model = 'gpt-3.5-turbo', errorMapping } = openaiConfig;
+    this.errorMapping = errorMapping || [];
+
+    this.api = new ChatGPTAPI({
+      apiKey: process.env.OPENAI_API_KEY,
+      fetch: this.proxyFetch,
+      systemMessage,
+      maxModelTokens: maxTokens,
+      completionParams: {
+        model,
+      },
+    });
   }
 
   private proxyFetch = (url: string, options?: any) => {
@@ -33,23 +47,9 @@ export class ChatGPTService implements OnModuleInit {
     });
   };
 
-  sendMessage(message: string, parentMessageId: string, _apiKey: string, _model: string): Observable<MessageEvent> {
-    const openaiConfig: OpenAiConfig = this.configService.get('openai') || {};
-    const { systemMessage, maxTokens, model: defaultModel = 'gpt-3.5-turbo', errorMapping } = openaiConfig;
-    this.errorMapping = errorMapping || [];
-	const apiKey = _apiKey || process.env.OPENAI_API_KEY; // 优先使用传入的 apiKey，如果为空则使用默认的
-	const model = _model || defaultModel; // 优先使用传入的 model，如果为空则使用默认的
-    const api = new ChatGPTAPI({
-      apiKey,
-      fetch: this.proxyFetch,
-      systemMessage,
-      maxModelTokens: maxTokens,
-      completionParams: {
-        model,
-      },
-    });
+  sendMessage(message: string, parentMessageId: string): Observable<MessageEvent> {
     const observable = new Observable<MessageEvent>((subscriber) => {
-      api
+      this.api
         .sendMessage(message, {
           parentMessageId,
           onProgress: (partialResponse) => {
