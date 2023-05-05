@@ -3,41 +3,29 @@ import { ChatGPTAPI, ChatMessage, ConversationResponseEvent } from 'chatgpt';
 import fetch from './fetch.js';
 
 import { ConfigService } from '@nestjs/config';
-import ProxyAgent from 'proxy-agent-v2';
 import { Observable } from 'rxjs';
+import ProxyAgent from 'proxy-agent-v2';
 import { ErrorMapping, OpenAiConfig } from './config/configuration.types.js';
 
 @Injectable()
 export class ChatGPTService implements OnModuleInit {
   private readonly logger = new Logger(ChatGPTService.name);
 
-  private api: ChatGPTAPI;
-  private proxyAgent: unknown;
-  private errorMapping: ErrorMapping[];
+//  private api: ChatGPTAPI;
+  private readonly apis: Map<string, ChatGPTAPI> = new Map();
+  private proxyAgent?: ProxyAgent;
+  private readonly errorMapping: { keyword: string; message: string }[];
+  private openaiConfig: OpenAiConfig;
 
   constructor(private readonly configService: ConfigService) {
     this.errorMapping = configService.get('openai.errorMapping') || [];
   }
 
   onModuleInit() {
-    const { HTTP_PROXY } = process.env;
-    if (HTTP_PROXY) {
-      this.proxyAgent = new ProxyAgent(HTTP_PROXY);
+    const httpProxy = process.env;
+    if (httpProxy) {
+      this.proxyAgent = new ProxyAgent(httpProxy);
     }
-
-    const openaiConfig: OpenAiConfig = this.configService.get('openai') || {};
-    const { systemMessage, maxTokens, model = 'gpt-3.5-turbo', errorMapping } = openaiConfig;
-    this.errorMapping = errorMapping || [];
-
-    this.api = new ChatGPTAPI({
-      apiKey: process.env.OPENAI_API_KEY,
-      fetch: this.proxyFetch,
-      systemMessage,
-      maxModelTokens: maxTokens,
-      completionParams: {
-        model,
-      },
-    });
   }
 
   private proxyFetch = (url: string, options?: any) => {
@@ -47,9 +35,25 @@ export class ChatGPTService implements OnModuleInit {
     });
   };
 
-  sendMessage(message: string, parentMessageId: string): Observable<MessageEvent> {
+  sendMessage(message: string, parentMessageId: string, apiKey: string, model: string): Observable<MessageEvent> {
+    const { systemMessage, maxTokens, model: defaultModel = 'gpt-3.5-turbo' } = this.configService.get('openai');
+    const currentApiKey = apiKey || process.env.OPENAI_API_KEY; // 优先使用传入的 apiKey，如果为空则使用默认的
+    const currentModel = model || defaultModel; // 优先使用传入的 model，如果为空则使用默认的
+    let api = this.apis.get(currentApiKey);
+    if (!api) {
+	    api = new ChatGPTAPI({
+	      currentApiKey,
+	      fetch: this.proxyFetch,
+	      systemMessage,
+	      maxModelTokens: maxTokens,
+	      completionParams: {
+	        currentModel,
+	      },
+	    });
+	    this.apis.set(currentApiKey, api);
+    }
     const observable = new Observable<MessageEvent>((subscriber) => {
-      this.api
+      api
         .sendMessage(message, {
           parentMessageId,
           onProgress: (partialResponse) => {

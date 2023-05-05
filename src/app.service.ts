@@ -6,6 +6,6 @@ export class AppService {
   constructor(private readonly chatGPTService: ChatGPTService) {}
 
   sendMessage(message: string, parentMessageId: string, apiKey: string, model: string) {
-    return this.chatGPTService.sendMessage(message, parentMessageId);
+    return this.chatGPTService.sendMessage(message, parentMessageId, apiKey, model);
   }
 }
