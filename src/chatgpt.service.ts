@@ -13,7 +13,7 @@ export class ChatGPTService implements OnModuleInit {
 
 //  private api: ChatGPTAPI;
   private readonly apis: Map<string, ChatGPTAPI> = new Map();
-  private proxyAgent?: ProxyAgent;
+  private proxyAgent: unknown;
   private readonly errorMapping: { keyword: string; message: string }[];
   private openaiConfig: OpenAiConfig;
 
