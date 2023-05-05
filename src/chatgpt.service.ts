@@ -47,7 +47,7 @@ export class ChatGPTService implements OnModuleInit {
 	      systemMessage,
 	      maxModelTokens: maxTokens,
 	      completionParams: {
-	        currentModel,
+	        model: currentModel,
 	      },
 	    });
 	    this.apis.set(currentApiKey, api);
