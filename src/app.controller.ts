@@ -31,8 +31,8 @@ export class AppController {
   @Sse()
   conversation(
     @Body() body: ConversationRequestBody,
-    @Headers('x-openai-api-key') apiKey: string,
-    @Headers('x-openai-model') model: string,
+    @Headers('X-Openai-Api-Key') apiKey: string,
+    @Headers('X-Openai-Model') model: string,
   ): Observable<MessageEvent> {
     const { messages, parent_message_id } = body;
     const message = messages[0]?.content.parts[0] ?? '';
