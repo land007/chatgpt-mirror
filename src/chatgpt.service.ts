@@ -42,7 +42,7 @@ export class ChatGPTService implements OnModuleInit {
     let api = this.apis.get(currentApiKey);
     if (!api) {
 	    api = new ChatGPTAPI({
-	      currentApiKey,
+	      apiKey: currentApiKey,
 	      fetch: this.proxyFetch,
 	      systemMessage,
 	      maxModelTokens: maxTokens,
